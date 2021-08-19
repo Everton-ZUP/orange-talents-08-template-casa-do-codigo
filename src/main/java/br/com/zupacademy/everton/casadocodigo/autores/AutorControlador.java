@@ -16,7 +16,7 @@ public class AutorControlador {
     private AutorRepositorio repositorio;
 
     /**
-     * Método responsável por adcionar um novo autor no sistema
+     * Método responsável por adicionar um novo autor no sistema
      * @param autorForm os atributos deste objeto não podem ser nulos
      * @return Os dados do autor cadastrado
      */
