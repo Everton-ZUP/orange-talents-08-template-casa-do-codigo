@@ -44,6 +44,18 @@ public class Livro {
     @NotNull @ManyToOne
     private Autor autor;
 
+    /**
+     *
+     * @param titulo Titulo do Livro
+     * @param resumo Resumo do livro
+     * @param sumario Sumario do livro
+     * @param preco Preço do livro
+     * @param numeroPaginas
+     * @param isbn Codigo do livro ISBN
+     * @param dataPublicacao
+     * @param categoria Categoria do Livro (Precisa existir)
+     * @param autor Autor do Livro (Precisa existir)
+     */
     public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn,
                  LocalDate dataPublicacao, Categoria categoria, Autor autor) {
         this.titulo = titulo;

@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/livro")
 public class LivroControlador {
 
-    @Autowired
-    private CategoriaRepositorio categoriaRepositorio;
-    @Autowired
-    private AutorRepositorio autorRepositorio;
+    @PersistenceContext
+    EntityManager manager;
     @Autowired
     private LivroRepositorio livroRepositorio;
 
     @PostMapping
     public LivroDTO adicionar(@RequestBody @Valid LivroForm form){
-        Livro livro = form.converterEmModelo(autorRepositorio, categoriaRepositorio);
+        Livro livro = form.converterEmModelo(manager);
         livro = livroRepositorio.save(livro);
         return new LivroDTO(livro);
     }

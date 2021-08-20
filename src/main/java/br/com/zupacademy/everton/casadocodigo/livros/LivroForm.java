@@ -6,9 +6,10 @@ import br.com.zupacademy.everton.casadocodigo.categorias.Categoria;
 import br.com.zupacademy.everton.casadocodigo.categorias.CategoriaRepositorio;
 import br.com.zupacademy.everton.casadocodigo.validacao.ExistEntity;
 import br.com.zupacademy.everton.casadocodigo.validacao.UniqueValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.EntityManager;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -29,16 +30,17 @@ public class LivroForm {
     private Integer numeroPaginas;
     @NotBlank @UniqueValue(domainClass = Livro.class, fieldName = "isbn")
     private String isbn;
-    @Future
+    @Future @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataPublicacao;
     @NotNull @ExistEntity(domainClass = Categoria.class,fieldName = "id")
     private Long categoria;
     @NotNull @ExistEntity(domainClass = Autor.class,fieldName = "id")
     private Long autor;
 
-    public LivroForm(String titulo, String resumo, BigDecimal preco, Integer numeroPaginas, String isbn, Long categoria, Long autor) {
+    public LivroForm(String titulo, String resumo,String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, Long categoria, Long autor) {
         this.titulo = titulo;
         this.resumo = resumo;
+        this.sumario = sumario;
         this.preco = preco;
         this.numeroPaginas = numeroPaginas;
         this.isbn = isbn;
@@ -46,15 +48,12 @@ public class LivroForm {
         this.autor = autor;
     }
 
-    public Livro converterEmModelo(AutorRepositorio autorRepositorio, CategoriaRepositorio categoriaRepositorio) {
-        Autor autor = autorRepositorio.findById(this.autor).get();
-        Categoria categoria = categoriaRepositorio.findById(this.categoria).get();
+    public Livro converterEmModelo(EntityManager manager) {
+        Autor autor = manager.find(Autor.class,this.autor);
+        Categoria categoria = manager.find(Categoria.class,this.categoria);
         return new Livro(this.titulo,this.resumo,this.sumario,this.preco,this.numeroPaginas,this.isbn,this.dataPublicacao,categoria,autor);
     }
 
-    public void setSumario(String sumario) {
-        this.sumario = sumario;
-    }
     public void setDataPublicacao(LocalDate dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
