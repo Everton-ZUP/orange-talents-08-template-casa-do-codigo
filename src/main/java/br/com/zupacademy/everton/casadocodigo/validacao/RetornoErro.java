@@ -12,8 +12,8 @@ public class RetornoErro {
         errosGlobais.add(errorMessage);
     }
 
-    public void addFieldErro(String field, String mensagem) {
-        CamposDeErro fieldError = new CamposDeErro(field, mensagem);
+    public void addFieldErro(String field, String Value, String mensagem) {
+        CamposDeErro fieldError = new CamposDeErro(Value, field, mensagem);
         firldErrors.add(fieldError);
     }
 

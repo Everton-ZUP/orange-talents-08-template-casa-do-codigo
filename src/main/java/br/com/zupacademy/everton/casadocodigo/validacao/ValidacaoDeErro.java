@@ -34,7 +34,7 @@ public class ValidacaoDeErro {
         errosGlobais.forEach(erro -> retorno.adicionaErro(getErrorMessage(erro)));
         erroCampos.forEach(erro -> {
             String mensagem = getErrorMessage(erro);
-            retorno.addFieldErro(erro.getField(), mensagem);
+            retorno.addFieldErro(erro.getField(), (String) erro.getRejectedValue(), mensagem);
         });
         return retorno;
     }

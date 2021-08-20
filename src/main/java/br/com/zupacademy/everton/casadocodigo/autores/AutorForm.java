@@ -9,7 +9,7 @@ public class AutorForm {
 
     @NotBlank
     private String nome;
-    @NotBlank @Email()
+    @NotBlank @Email
     private String email;
     @NotBlank @Length(max = 400)
     private String descricao;
@@ -22,5 +22,9 @@ public class AutorForm {
 
     public Autor converteEmModelo() {
         return new Autor(this.nome,this.email,this.descricao);
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 }
