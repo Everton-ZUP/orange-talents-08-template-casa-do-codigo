@@ -1,6 +1,6 @@
 package br.com.zupacademy.everton.casadocodigo.autores;
 
-import br.com.zupacademy.everton.casadocodigo.validacao.ProibeEmailDuplicadoAutorValidator;
+import br.com.zupacademy.everton.casadocodigo.validacao.ProibeDuplicado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +14,13 @@ public class AutorControlador {
     @Autowired
     private AutorRepositorio repositorio;
 
-    @Autowired
-    ProibeEmailDuplicadoAutorValidator proibeEmailDuplicadoAutorValidator;
     /**
      * Método para chamar as validações customizadas
      * o método com essa anotação vai ser Executado toda vez que uma request for feita para esse endpoint
      */
     @InitBinder
     public void init (WebDataBinder binder){
-        binder.addValidators(proibeEmailDuplicadoAutorValidator);
+        binder.addValidators(new ProibeDuplicado(repositorio));
     }
 
     /**

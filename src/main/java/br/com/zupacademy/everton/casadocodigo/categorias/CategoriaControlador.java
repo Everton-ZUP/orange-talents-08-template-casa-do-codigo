@@ -1,6 +1,6 @@
 package br.com.zupacademy.everton.casadocodigo.categorias;
 
-import br.com.zupacademy.everton.casadocodigo.validacao.ProibeNomeDuplicadoCategoriaValidator;
+import br.com.zupacademy.everton.casadocodigo.validacao.ProibeDuplicado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,9 @@ public class CategoriaControlador {
     @Autowired
     private CategoriaRepositorio repositorio;
 
-    @Autowired
-    private ProibeNomeDuplicadoCategoriaValidator proibeNomeDuplicadoCategoriaValidator;
-
     @InitBinder
     public void init(WebDataBinder binder){
-        binder.addValidators(proibeNomeDuplicadoCategoriaValidator);
+        binder.addValidators(new ProibeDuplicado(repositorio));
     }
 
     @PostMapping
