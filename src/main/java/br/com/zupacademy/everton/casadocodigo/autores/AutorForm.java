@@ -1,5 +1,6 @@
 package br.com.zupacademy.everton.casadocodigo.autores;
 
+import br.com.zupacademy.everton.casadocodigo.validacao.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -9,7 +10,7 @@ public class AutorForm {
 
     @NotBlank
     private String nome;
-    @NotBlank @Email
+    @NotBlank @Email @UniqueValue(domainClass = Autor.class, fieldName = "Email")
     private String email;
     @NotBlank @Length(max = 400)
     private String descricao;
