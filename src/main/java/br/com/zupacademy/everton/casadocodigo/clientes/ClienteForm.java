@@ -2,6 +2,7 @@ package br.com.zupacademy.everton.casadocodigo.clientes;
 
 import br.com.zupacademy.everton.casadocodigo.estado.Estado;
 import br.com.zupacademy.everton.casadocodigo.pais.Pais;
+import br.com.zupacademy.everton.casadocodigo.validacao.CpfOuCnpj;
 import br.com.zupacademy.everton.casadocodigo.validacao.ExistEntity;
 import br.com.zupacademy.everton.casadocodigo.validacao.UniqueValue;
 
@@ -15,7 +16,8 @@ public class ClienteForm {
     private @NotBlank @Email @UniqueValue(domainClass = Cliente.class, fieldName = "email") String email;
     private @NotBlank String nome;
     private @NotBlank String sobrenome;
-    private @NotBlank @UniqueValue(domainClass = Cliente.class, fieldName = "documento") String documento;
+    private @NotBlank @CpfOuCnpj @UniqueValue(domainClass = Cliente.class, fieldName = "documento")
+    String documento;
     private @NotBlank String endereco;
     private @NotBlank String complemento;
     private @NotBlank String cidade;
@@ -23,6 +25,7 @@ public class ClienteForm {
     private Long idEstado;
     private @NotBlank String telefone;
     private @NotBlank String cep;
+
 
     public ClienteForm(String email, String nome, String sobrenome, String documento, String endereco,
                        String complemento, String cidade, Long idPais, Long idEstado, String telefone, String cep) {
