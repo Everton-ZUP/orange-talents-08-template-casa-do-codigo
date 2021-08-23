@@ -69,6 +69,9 @@ public class Livro {
         this.autor = autor;
     }
 
+    public Livro() {
+    }
+
     public Long getId() {
         return id;
     }
