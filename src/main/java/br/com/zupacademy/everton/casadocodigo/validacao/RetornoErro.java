@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RetornoErro {
     private List<String> errosGlobais = new ArrayList<>();
-    private List<CamposDeErro> firldErrors = new ArrayList<>();
+    private List<CamposDeErro> fieldErrors = new ArrayList<>();
 
 
     public void adicionaErro(String errorMessage) {
@@ -14,14 +14,14 @@ public class RetornoErro {
 
     public void addFieldErro(String field, Object Value, String mensagem) {
         CamposDeErro fieldError = new CamposDeErro(Value, field, mensagem);
-        firldErrors.add(fieldError);
+        fieldErrors.add(fieldError);
     }
 
     public List<String> getErrosGlobais() {
         return errosGlobais;
     }
 
-    public List<CamposDeErro> getFirldErrors() {
-        return firldErrors;
+    public List<CamposDeErro> getFieldErrors() {
+        return fieldErrors;
     }
 }
