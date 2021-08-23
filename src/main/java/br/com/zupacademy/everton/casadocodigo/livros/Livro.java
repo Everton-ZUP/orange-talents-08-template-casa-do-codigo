@@ -69,6 +69,7 @@ public class Livro {
         this.autor = autor;
     }
 
+    @Deprecated
     public Livro() {
     }
 
