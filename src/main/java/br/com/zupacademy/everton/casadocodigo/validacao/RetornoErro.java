@@ -12,7 +12,7 @@ public class RetornoErro {
         errosGlobais.add(errorMessage);
     }
 
-    public void addFieldErro(String field, String Value, String mensagem) {
+    public void addFieldErro(String field, Object Value, String mensagem) {
         CamposDeErro fieldError = new CamposDeErro(Value, field, mensagem);
         firldErrors.add(fieldError);
     }
