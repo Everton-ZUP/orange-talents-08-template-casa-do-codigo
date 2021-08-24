@@ -16,8 +16,7 @@ public class ClienteForm {
     private @NotBlank @Email @UniqueValue(domainClass = Cliente.class, fieldName = "email") String email;
     private @NotBlank String nome;
     private @NotBlank String sobrenome;
-    private @NotBlank @CpfOuCnpj @UniqueValue(domainClass = Cliente.class, fieldName = "documento")
-    String documento;
+    private @NotBlank @CpfOuCnpj @UniqueValue(domainClass = Cliente.class, fieldName = "documento") String documento;
     private @NotBlank String endereco;
     private @NotBlank String complemento;
     private @NotBlank String cidade;

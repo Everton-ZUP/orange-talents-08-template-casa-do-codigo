@@ -1,7 +1,9 @@
 package br.com.zupacademy.everton.casadocodigo.clientes;
 
 import br.com.zupacademy.everton.casadocodigo.validacao.ValidaEstadoDoPais;
+import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +30,9 @@ public class ClienteControlador {
     }
 
     @PostMapping
-    public Long adicionar(@RequestBody @Valid ClienteForm form){
+    public ResponseEntity<?> adicionar(@RequestBody @Valid ClienteForm form){
         Cliente cliente = form.converterEmModelo(manager);
         repostorio.save(cliente);
-        return cliente.getId();
+        return ResponseEntity.ok(cliente.getId());
     }
 }

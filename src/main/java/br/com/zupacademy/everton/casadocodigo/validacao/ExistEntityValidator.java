@@ -1,6 +1,5 @@
 package br.com.zupacademy.everton.casadocodigo.validacao;
 
-import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
